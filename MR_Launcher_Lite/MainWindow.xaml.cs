@@ -24,26 +24,26 @@ namespace MR_Launcher_Lite
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         #region Fields
-        private Models.Config _config;
-        private string _selectedModVersion;
+        private Models.UnitOfWork _unitOfWork;
+        private Models.Mod _selectedMod;
         #endregion
         #region Properties
-        public Models.Config Config
+        public Models.UnitOfWork UnitOfWork
         {
-            get { return _config; }
+            get { return _unitOfWork; }
             set
             {
-                _config = value;
-                OnPropertyChanged(nameof(Config));
+                _unitOfWork = value;
+                OnPropertyChanged(nameof(UnitOfWork));
             }
         }
-        public string SelectedModVersion
+        public Models.Mod SelectedMod
         {
-            get => _selectedModVersion;
+            get => _selectedMod;
             set
             {
-                _selectedModVersion = value;
-                OnPropertyChanged(nameof(SelectedModVersion));
+                _selectedMod = value;
+                OnPropertyChanged(nameof(SelectedMod));
             }
         }
         #endregion
@@ -59,15 +59,14 @@ namespace MR_Launcher_Lite
             DataContext = this;
 
             // Setting fields
-            _config = new();
-            _selectedModVersion = string.Empty;
+            UnitOfWork = new();
 
             // Trying to load config
-            var isLoaded = await Config.Load();
+            var isLoaded = await UnitOfWork.Config.Load();
             if (!isLoaded)
             {
                 MessageBox.Show("Error while reading config, overwriting");
-                Config.Save();
+                UnitOfWork.Config.Save();
             }
         }
         #endregion
@@ -83,8 +82,8 @@ namespace MR_Launcher_Lite
             {
                 if(fileDialog.SafeFileName.ToLower() == "mr.exe")
                 {
-                    Config.GameLocation = fileDialog.FileName;
-                    Config.Save();
+                    UnitOfWork.Config.GameLocation = fileDialog.FileName;
+                    UnitOfWork.Config.Save();
                 }
                 else
                 {
@@ -94,10 +93,24 @@ namespace MR_Launcher_Lite
         }
         private void Install_Selected_Mod_Click(object sender, EventArgs e)
         {
-            if(SelectedModVersion == string.Empty)
+            if(SelectedMod == null)
             {
                 MessageBox.Show("Choose mod version first");
             }
+        }
+        private async void Scan_Mods_Click(object sender, EventArgs e)
+        {
+            var gameLocation = UnitOfWork.Config.GameLocation;
+            var anyMods = await UnitOfWork.ModsService.Scan_Folders(gameLocation);
+            if(!anyMods)
+            {
+                MessageBox.Show("Problem with loading mods");
+            }
+            else
+            {
+                SelectedMod = UnitOfWork.ModsService.Mods[0];
+            }
+
         }
         #endregion
         #region INotify

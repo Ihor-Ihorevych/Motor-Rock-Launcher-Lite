@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MR_Launcher_Lite"
         mc:Ignorable="d"
-        Title="{Binding Config.GameLocation}" 
+        Title="Motor Rock Launcher Lite" 
         Height="650" 
         Width="950"
+        xmlns:conv="clr-namespace:MR_Launcher_Lite.Converters"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
          TextElement.FontWeight="Regular"
-         TextElement.FontSize="13"
          TextOptions.TextFormattingMode="Ideal"
-         TextOptions.TextRenderingMode="Auto"
+         TextOptions.TextRenderingMode="Aliased"
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize">
+    <Window.Resources>
+        <conv:FilenameToImageConverter x:Key="FilenameToImageConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,37 +27,86 @@
         </Grid.RowDefinitions>
         <ToolBar Grid.Row="0" Style="{DynamicResource MaterialDesignToolBar}">
             <Button Click="Locate_Game_Folder_Click">Locate game folder</Button>
-            <Button>Choose mod</Button>
-            <Button>Choose music</Button>
-            <Button>Choose gamemode</Button>
+            <Button Click="Scan_Mods_Click">Scan mods</Button>
         </ToolBar>
-        <Grid Grid.Row="1" Width="900">
+        <Grid Grid.Row="1" Width="920">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalAlignment="Center">Choose mod version:</Label>
-                <ComboBox Width="300" 
-                          ItemsSource="{Binding Config.Mods}" 
-                          SelectedItem="{Binding SelectedModVersion}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button Content="Install mod"
-                        Click="Install_Selected_Mod_Click"
-                        Margin="50, 0" 
-                        Cursor="Hand"/>
+            <!--Combobox menu-->
+            <StackPanel Margin="0, 10" Orientation="Vertical">
+                <!--First row-->
+                <StackPanel Orientation="Horizontal">
+                    <!--Mod picker-->
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="90" VerticalAlignment="Center">Mod:</Label>
+                        <ComboBox Width="200" 
+                          ItemsSource="{Binding UnitOfWork.ModsService.Mods}" 
+                          SelectedItem="{Binding SelectedMod}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button
+                            Width="115"
+                            Margin="15, 0"
+                            Content="Install mod"
+                            Click="Install_Selected_Mod_Click"/>
+                    </StackPanel>
+                    <!--Music picker-->
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="90" VerticalAlignment="Center">Gamemode:</Label>
+                        <ComboBox Width="200" 
+                                  ItemsSource="{Binding SelectedMod.GameModes}"
+                                  IsEnabled="{Binding SelectedMod.GameModes.Count}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Width="150" 
+                                Margin="15, 0"
+                                Content="Install gamemode"
+                                Click="Install_Selected_Mod_Click" Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+                <!--Second row-->
+                <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
+                    <Label Width="90" VerticalAlignment="Center">Music pack:</Label>
+                    <ComboBox Width="200" 
+                          ItemsSource="{Binding SelectedMod.AudioPacks}"
+                          IsEnabled="{Binding SelectedMod.AudioPacks.Count}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Install music"
+                            Width="115"
+                            Margin="15, 0"
+                            Click="Install_Selected_Mod_Click"/>
+                </StackPanel>
             </StackPanel>
-            <!--Mod info grid-->
+
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline3TextBlock}" 
+                               Text="{Binding SelectedMod.Name}" TextWrapping="Wrap"/>
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                               Text="{Binding SelectedMod.Description}" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Image Width="300" Source="{Binding Converter={StaticResource FilenameToImageConverter}, ConverterParameter='logo'}"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

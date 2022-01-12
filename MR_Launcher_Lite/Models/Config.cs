@@ -11,7 +11,6 @@ namespace MR_Launcher_Lite.Models
     {
         #region Fields
         private string _gameLocation;
-        private ObservableCollection<string> _mods;
         #endregion
         #region Properties
         public string GameLocation
@@ -23,21 +22,11 @@ namespace MR_Launcher_Lite.Models
                 OnPropertyChanged(nameof(GameLocation));
             }
         }
-        public ObservableCollection<string> Mods
-        {
-            get => _mods;
-            set
-            {
-                _mods = value;
-                OnPropertyChanged(nameof(Mods));
-            }
-        }
         #endregion
         #region Init
         public Config()
         {
             _gameLocation = string.Empty;
-            _mods = new() { "a", "b", "c"};
         }
         #endregion
         #region Methods
@@ -53,7 +42,6 @@ namespace MR_Launcher_Lite.Models
                 string json = await File.ReadAllTextAsync("config.json");
                 var deserializedObject = JsonSerializer.Deserialize<Config>(json);
                 GameLocation = deserializedObject.GameLocation;
-                Mods = deserializedObject.Mods;
                 return true;
             }
             catch
