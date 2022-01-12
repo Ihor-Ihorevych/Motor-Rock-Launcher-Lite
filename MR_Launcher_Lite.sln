@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MR_Launcher_Lite", "MR_Launcher_Lite\MR_Launcher_Lite.csproj", "{B6E89A28-1AD1-4EA6-9470-B48F03B7BB9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6E89A28-1AD1-4EA6-9470-B48F03B7BB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E89A28-1AD1-4EA6-9470-B48F03B7BB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E89A28-1AD1-4EA6-9470-B48F03B7BB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E89A28-1AD1-4EA6-9470-B48F03B7BB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14DFB235-AF2A-4D16-9408-A06923AB588B}
+	EndGlobalSection
+EndGlobal
