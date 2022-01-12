@@ -97,11 +97,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
+      "projectUniqueName": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\Motor-Rock-Launcher-Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
       "projectName": "MR_Launcher_Lite",
-      "projectPath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
+      "projectPath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\Motor-Rock-Launcher-Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
       "packagesPath": "C:\\Users\\volos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\MR_Launcher_Lite\\obj\\",
+      "outputPath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\Motor-Rock-Launcher-Lite\\MR_Launcher_Lite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

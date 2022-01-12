@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w8aRa6E8U/GwzmCfxQqoTrpZFcCpjf6WmrNhPJz7/xoHHEfbTWjoO2w6u+gHKuwH7rf5DTw24nNhxI8mIH5uZw==",
+  "dgSpecHash": "dnnodr6Td4tHUzMnhRt1MNqZWCYH1yNgz1O/2zj2ljB1iknkHxrzH0iqyBx4Io7BAwla7miiizeF5nJHq38wsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
+  "projectFilePath": "C:\\Users\\volos\\Desktop\\MR_Launcher_Lite\\Motor-Rock-Launcher-Lite\\MR_Launcher_Lite\\MR_Launcher_Lite.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\volos\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",
     "C:\\Users\\volos\\.nuget\\packages\\materialdesignthemes\\4.3.0\\materialdesignthemes.4.3.0.nupkg.sha512",
